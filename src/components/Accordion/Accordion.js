@@ -1,8 +1,9 @@
 import React from 'react';
+import style from './Accordion.module.scss'
 
 const Accordion = ({children}) => {
     return (
-        <div>
+        <div className={style.Accordion}>
             {children}
         </div>
     );
