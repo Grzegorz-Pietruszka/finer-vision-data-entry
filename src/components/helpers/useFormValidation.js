@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 function useFormValidation(initialState, validate) {
     const [inputValues, setInputValues] = useState(initialState);
@@ -18,18 +18,15 @@ function useFormValidation(initialState, validate) {
                 birthDate: event
             });
         }
-        setIsSubmittable(!Object.values(inputValues).some(value => value === ""));
+        setIsSubmittable(!Object.values(inputValues).every(value => value !== ""));
     }
 
     function handleSubmit(event) {
-        console.log(errors);
         event.preventDefault();
         const validationErrors = validate(inputValues);
         setErrors(validationErrors);
         if (isSubmittable) {
-            console.log('submited')
-        } else {
-            console.log('not submited')
+            alert('Form has been submitted')
         }
     }
 

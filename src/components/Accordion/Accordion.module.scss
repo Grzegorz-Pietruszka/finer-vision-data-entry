@@ -1,21 +1,29 @@
 .Accordion {
+  background-color: #dedede;
   .accordionTitle {
     padding: 15px 0;
     width: 100%;
+    color: #fff;
     background: rgb(247, 186, 4);
     background: linear-gradient(180deg, rgba(247, 186, 4, 1) 21%, rgba(243, 179, 9, 1) 47%, rgba(239, 165, 14, 1) 69%);
+    border-radius: 5px;
+
+    span {
+      margin-left: 15px;
+      text-shadow: 2px 2px 0px rgba(150, 150, 150, 1);    }
+
   }
 
   .accordionContent {
     height: 0;
     opacity: 0;
-    transition: all 600ms ease-in-out;
     overflow: hidden;
 
     .show {
       height: 100px;
       opacity: 1;
+      padding: 200px 0;
     }
   }
-
 }
+

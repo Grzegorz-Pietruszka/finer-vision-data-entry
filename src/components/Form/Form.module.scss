@@ -2,19 +2,41 @@ form {
   .formInputs {
     display: flex;
     flex-direction: column;
-    background-color: #dedede;
+    //background-color: #dedede;
     padding: 10px 5px;
 
-    input {
-      box-shadow: inset 8px 8px 63px -142px rgba(0, 0, 0, 0.75);
-      border-radius: 5px;
-      border: none;
-      display: block;
+    .inputWrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+
+      input {
+        margin-top: 5px;
+        width: 50%;
+        box-shadow: inset 8px 8px 63px -142px rgba(0, 0, 0, 0.75);
+        border-radius: 5px;
+        border: none;
+        padding: 5px 8px;
+      }
+
+      input[type="radio"] {
+        display: inline-block;
+        margin-bottom: 5px;
+      }
+
+      input[name="date"] {
+        width: 210%;
+        margin-left: -60%;
+        margin-top: -40px;
+      }
+
+      span {
+        margin-top: 20px;
+      }
     }
 
-    input[type="radio"] {
-      display: inline-block;
-    }
 
     .error {
       p {
@@ -26,4 +48,32 @@ form {
       }
     }
   }
+
+  button {
+    width: 20%;
+    margin: 10px 5px 10px auto;
+    padding: 8px 0;
+    color: white;
+    background: linear-gradient(180deg, rgba(101, 91, 179, 1) 35%, rgba(111, 98, 192, 1) 53%, rgba(115, 98, 206, 1) 77%);
+    border: none;
+    border-radius: 5px;
+  }
+
+  .comments {
+    //background-color: #dedede;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submit {
+    //background-color: #dedede;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    button {
+      margin: 10px auto;
+    }
+  }
+
 }
