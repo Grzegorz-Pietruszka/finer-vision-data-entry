@@ -31,66 +31,76 @@ const Form = () => {
                        active={activeAccordion}
                        setActive={setActiveAccordion}>
                 <div className={style.formInputs}>
-                    <label className={errors.firstName && style.inputError}>First Name</label>
-                    <input
-                        type='text'
-                        onChange={handleChange}
-                        name='firstName'
-                        value={inputValues.firstName}/>
-                    {errors.firstName && <p>{errors.firstName}</p>}
+                    <div className={errors.firstName && style.error}>
+                        <label>First Name</label>
+                        <input
+                            type='text'
+                            onChange={handleChange}
+                            name='firstName'
+                            value={inputValues.firstName}/>
+                        {errors.firstName && <p>{errors.firstName}</p>}
+                    </div>
 
-                    <label className={errors.surname && style.inputError}>Surname</label>
-                    <input type='text'
-                           onChange={handleChange}
-                           name='surname'
-                           value={inputValues.surname}/>
-                    {errors.surname && <p>{errors.surname}</p>}
+                    <div className={errors.surname && style.error}>
+                        <label>Surname</label>
+                        <input type='text'
+                               onChange={handleChange}
+                               name='surname'
+                               value={inputValues.surname}/>
+                        {errors.surname && <p>{errors.surname}</p>}
 
-                    <label className={errors.email && style.inputError}>Email Address</label>
-                    <input type='text'
-                           onChange={handleChange}
-                           name='emailAddress'
-                           value={inputValues.emailAddress}/>
-                    {errors.email && <p>{errors.email}</p>}
+                        <label className={errors.email && style.error}>Email Address</label>
+                        <input type='text'
+                               onChange={handleChange}
+                               name='emailAddress'
+                               value={inputValues.emailAddress}/>
+                        {errors.email && <p>{errors.email}</p>}
+                    </div>
 
-                    <label className={errors.mobileNumber && style.inputError}>Mobile Number</label>
-                    <input type='text'
-                           onChange={handleChange}
-                           name='mobileNumber'
-                           value={inputValues.mobileNumber}/>
-                    {errors.mobileNumber && <p>{errors.mobileNumber}</p>}
+                    <div className={errors.mobileNumber && style.error}>
+                        <label>Mobile Number</label>
+                        <input type='text'
+                               onChange={handleChange}
+                               name='mobileNumber'
+                               value={inputValues.mobileNumber}/>
+                        {errors.mobileNumber && <p>{errors.mobileNumber}</p>}
+                        <div className={errors.gender && style.error}>
 
-                    <label>Select your gender</label>
-                    <label>
-                        <input type="radio"
-                               value="male"
-                               name="gender"
-                               onChange={handleChange}/>
-                        Male
-                    </label>
-                    <label>
-                        <input type="radio"
-                               value="female"
-                               name="gender"
-                               onChange={handleChange}/>
-                        Female
-                    </label>
-                    <label>
-                        <input type="radio"
-                               value="other"
-                               name="gender"
-                               onChange={handleChange}/>
-                        Other
-                    </label>
-                    {errors.gender && <p>{errors.gender}</p>}
+
+                            <p>Select your gender</p>
+                            <label>Male</label>
+                            <input type="radio"
+                                   value="male"
+                                   name="gender"
+                                   onChange={handleChange}/>
+
+
+                            <label>Female</label>
+                            <input type="radio"
+                                   value="female"
+                                   name="gender"
+                                   onChange={handleChange}/>
+
+
+                            <label>Other</label>
+                            <input type="radio"
+                                   value="other"
+                                   name="gender"
+                                   onChange={handleChange}/>
+                            {errors.gender && <p>{errors.gender}</p>}
+                        </div>
+
+                    </div>
 
                     {/*date of birth*/}
-                    <label className={errors.birthDate && style.inputError}>Date of birth </label>
-                    <DatePicker selected={inputValues.birthDate}
-                                name="date"
-                                onChange={handleChange}
-                                dateFormat="dd/MM/yyyy"/>
-                    {errors.birthDate && <p>{errors.birthDate}</p>}
+                    <div className={errors.birthDate && style.error}>
+                        <label>Date of birth </label>
+                        <DatePicker selected={inputValues.birthDate}
+                                    name="date"
+                                    onChange={handleChange}
+                                    dateFormat="dd/MM/yyyy"/>
+                        {errors.birthDate && <p>{errors.birthDate}</p>}
+                    </div>
 
                     <button type={"button"} onClick={() => setActiveAccordion('Step 2: More comments')}>
                         Next
@@ -101,8 +111,8 @@ const Form = () => {
                        active={activeAccordion}
                        setActive={setActiveAccordion}>
 
-                <textarea name="comments" maxlength="100" cols="30" rows="10"
-                          onChange={handleChange}>Your comments</textarea>
+                <textarea name="comments" maxLength="100" cols="30" rows="10" defaultValue='Your comments'
+                          onChange={handleChange} />
                 <button type={"button"} onClick={() => setActiveAccordion('Submit')}>
                     Next
                 </button>

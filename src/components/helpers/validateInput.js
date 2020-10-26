@@ -38,7 +38,6 @@ export default function validateInput(values) {
         errors.birthDate = "Please provide your date of birth"
     }
 
-
     return errors;
 }
 

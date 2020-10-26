@@ -33,7 +33,7 @@ function useFormValidation(initialState, validate) {
         }
     }
 
-    return {inputValues, handleChange, errors, handleSubmit, isSubmittable}
+    return {inputValues, handleChange, errors, handleSubmit}
 }
 
 export default useFormValidation;
