@@ -12,7 +12,8 @@ const INITIAL_STATE = {
     emailAddress: "",
     mobileNumber: "",
     gender: "",
-    birthDate: ""
+    birthDate: "",
+    comments: ""
 };
 
 const Form = () => {
@@ -28,96 +29,89 @@ const Form = () => {
         <form onSubmit={handleSubmit}>
             <Accordion accordionTitle={"Step 1: Your details"}
                        active={activeAccordion}
-                       setActive={setActiveAccordion}
-            >
+                       setActive={setActiveAccordion}>
                 <div className={style.formInputs}>
-                    <label className={errors.firstName && style.inputError}>
-                        First Name
-                        <input
-                            type='text'
-                            onChange={handleChange}
-                            name='firstName'
-                            value={inputValues.firstName}
-                        />
-                        {errors.firstName && <p>{errors.firstName}</p>}
-                    </label>
-                    <label className={errors.surname && style.inputError}>Surname
-                        <input type='text'
-                               onChange={handleChange}
-                               name='surname'
-                               value={inputValues.surname}
-                        />
-                        {errors.surname && <p>{errors.surname}</p>}
-                    </label>
-                    <label className={errors.email && style.inputError}>Email Address
-                        <input type='text'
-                               onChange={handleChange}
-                               name='emailAddress'
-                               value={inputValues.emailAddress}/>
-                        {errors.email && <p>{errors.email}</p>}
-                    </label>
+                    <label className={errors.firstName && style.inputError}>First Name</label>
+                    <input
+                        type='text'
+                        onChange={handleChange}
+                        name='firstName'
+                        value={inputValues.firstName}/>
+                    {errors.firstName && <p>{errors.firstName}</p>}
 
-                    <label className={errors.mobileNumber && style.inputError}>Mobile Number
-                        <input type='text'
-                               onChange={handleChange}
-                               name='mobileNumber'
-                               value={inputValues.mobileNumber}
-                        />
-                        {errors.mobileNumber && <p>{errors.mobileNumber}</p>}
-                    </label>
+                    <label className={errors.surname && style.inputError}>Surname</label>
+                    <input type='text'
+                           onChange={handleChange}
+                           name='surname'
+                           value={inputValues.surname}/>
+                    {errors.surname && <p>{errors.surname}</p>}
 
-                    {/*gender*/}
-                    <label>Male
+                    <label className={errors.email && style.inputError}>Email Address</label>
+                    <input type='text'
+                           onChange={handleChange}
+                           name='emailAddress'
+                           value={inputValues.emailAddress}/>
+                    {errors.email && <p>{errors.email}</p>}
+
+                    <label className={errors.mobileNumber && style.inputError}>Mobile Number</label>
+                    <input type='text'
+                           onChange={handleChange}
+                           name='mobileNumber'
+                           value={inputValues.mobileNumber}/>
+                    {errors.mobileNumber && <p>{errors.mobileNumber}</p>}
+
+                    <label>Select your gender</label>
+                    <label>
                         <input type="radio"
                                value="male"
                                name="gender"
-                               onChange={handleChange}
-                        />
+                               onChange={handleChange}/>
+                        Male
                     </label>
-                    <label>Female
+                    <label>
                         <input type="radio"
                                value="female"
                                name="gender"
-                               onChange={handleChange}
-                        />
+                               onChange={handleChange}/>
+                        Female
                     </label>
-                    <label>Other
+                    <label>
                         <input type="radio"
                                value="other"
                                name="gender"
-                               onChange={handleChange}
-                        />
+                               onChange={handleChange}/>
+                        Other
                     </label>
                     {errors.gender && <p>{errors.gender}</p>}
 
                     {/*date of birth*/}
-                    <label className={errors.birthDate && style.inputError}>Date of birth
-                        <DatePicker selected={inputValues.birthDate}
-                                    name="date"
-                                    onChange={handleChange}
-                                    dateFormat="dd/MM/yyyy"/>
-                        {errors.birthDate && <p>{errors.birthDate}</p>}
+                    <label className={errors.birthDate && style.inputError}>Date of birth </label>
+                    <DatePicker selected={inputValues.birthDate}
+                                name="date"
+                                onChange={handleChange}
+                                dateFormat="dd/MM/yyyy"/>
+                    {errors.birthDate && <p>{errors.birthDate}</p>}
 
-                    </label>
                     <button type={"button"} onClick={() => setActiveAccordion('Step 2: More comments')}>
                         Next
                     </button>
-                    {/*comments*/}
                 </div>
             </Accordion>
             <Accordion accordionTitle={"Step 2: More comments"}
                        active={activeAccordion}
-                       setActive={setActiveAccordion}>another accordion
+                       setActive={setActiveAccordion}>
 
-                <button type={"button"} onClick={() => setActiveAccordion('Summary')}>
+                <textarea name="comments" maxlength="100" cols="30" rows="10"
+                          onChange={handleChange}>Your comments</textarea>
+                <button type={"button"} onClick={() => setActiveAccordion('Submit')}>
                     Next
                 </button>
             </Accordion>
 
-            <Accordion accordionTitle={"Summary"}
+            <Accordion accordionTitle={"Submit"}
                        active={activeAccordion}
                        setActive={setActiveAccordion}>
-                Summary
+                Submit this form
                 <button type="submit">
                     Submit
                 </button>

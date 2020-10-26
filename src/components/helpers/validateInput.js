@@ -1,7 +1,9 @@
 const mobileNumberRegex = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|#)\d{3,4})?$/;
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
 export default function validateInput(values) {
     let errors = {};
+
     // First name Errors
     if (!values.firstName) {
         errors.firstName = "You need provide your first name";
@@ -28,9 +30,10 @@ export default function validateInput(values) {
 
     // Gender Errors
     if (!values.gender) {
-        errors.gender = "Please choose your gender"
+        errors.gender = "Please select your gender"
     }
 
+    // Birthday errors
     if (!values.birthDate) {
         errors.birthDate = "Please provide your date of birth"
     }
