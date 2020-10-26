@@ -1,23 +1,39 @@
-import React from "react";
+import {useEffect, useState} from "react";
 
-const useFormValidation = (initialState, validate) => {
-    const [values, setValues] = React.useState(initialState);
-    const [errors, setErrors] = React.useState({});
+function useFormValidation(initialState, validate) {
+    const [inputValues, setInputValues] = useState(initialState);
+    const [errors, setErrors] = useState({});
+    const [isSubmittable, setIsSubmittable] = useState(false);
 
     function handleChange(event) {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value
-        });
-        console.log(values)
+        if (event && event.target) {
+            const {name, value} = event.target;
+            setInputValues({
+                ...inputValues,
+                [name]: value
+            });
+        } else {
+            setInputValues({
+                ...inputValues,
+                birthDate: event
+            });
+        }
+        setIsSubmittable(!Object.values(inputValues).some(value => value === ""));
     }
 
-    function handleBlur() {
-        const validationErrors = validate(values);
+    function handleSubmit(event) {
+        console.log(errors);
+        event.preventDefault();
+        const validationErrors = validate(inputValues);
         setErrors(validationErrors);
+        if (isSubmittable) {
+            console.log('submited')
+        } else {
+            console.log('not submited')
+        }
     }
 
-    return {values, handleChange, handleBlur, errors}
-};
+    return {inputValues, handleChange, errors, handleSubmit, isSubmittable}
+}
 
 export default useFormValidation;

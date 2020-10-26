@@ -1,4 +1,21 @@
 .Accordion {
-  display: flex;
-  flex-direction: column;
+  .accordionTitle {
+    padding: 15px 0;
+    width: 100%;
+    background: rgb(247, 186, 4);
+    background: linear-gradient(180deg, rgba(247, 186, 4, 1) 21%, rgba(243, 179, 9, 1) 47%, rgba(239, 165, 14, 1) 69%);
+  }
+
+  .accordionContent {
+    height: 0;
+    opacity: 0;
+    transition: all 600ms ease-in-out;
+    overflow: hidden;
+
+    .show {
+      height: 100px;
+      opacity: 1;
+    }
+  }
+
 }
