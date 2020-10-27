@@ -4,8 +4,6 @@ import useFormValidation from "../helpers/useFormValidation";
 import validateInput from "../helpers/validateInput";
 import style from "./Form.module.scss";
 
-
-
 const INITIAL_STATE = {
     firstName: {inputValue: "", required: true},
     surname: {inputValue: "", required: true},
