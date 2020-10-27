@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Accordion from "../Accordion/Accordion";
 import useFormValidation from "../helpers/useFormValidation";
 import validateInput from "../helpers/validateInput";
-// import "react-datepicker/dist/react-datepicker.css";
 import style from "./Form.module.scss";
 
 
