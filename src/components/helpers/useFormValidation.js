@@ -39,7 +39,7 @@ function useFormValidation(initialState, validate) {
         }
     }
 
-    return {handleChange, errors, handleSubmit, formIsSubmitting, isSubmittable}
+    return {errors, handleChange, handleSubmit,  formIsSubmitting, isSubmittable}
 }
 
 export default useFormValidation;

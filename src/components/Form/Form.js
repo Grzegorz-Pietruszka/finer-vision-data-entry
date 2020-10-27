@@ -17,8 +17,8 @@ const INITIAL_STATE = {
 const Form = () => {
     const [activeAccordion, setActiveAccordion] = useState("Step 1: Your details");
     const {
-        handleChange,
         errors,
+        handleChange,
         handleSubmit,
         formIsSubmitting,
         isSubmittable
