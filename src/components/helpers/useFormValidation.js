@@ -1,36 +1,45 @@
-import React, {useState} from "react";
+import {useEffect, useState} from "react";
 
 function useFormValidation(initialState, validate) {
     const [inputValues, setInputValues] = useState(initialState);
     const [errors, setErrors] = useState({});
-    const [isSubmittable, setIsSubmittable] = useState(false);
+    const [isSubmittable, setIsSubmittable] = useState(false)
+    const [formIsSubmitting, setFormIsSubmitting] = useState(false)
+
+    useEffect(() => {
+        const requiredValuesProvided = Object.values(inputValues).filter(input => {
+            return input.inputValue === "" && input.required;
+        }).length === 0 && Object.values(errors).length === 0;
+        setIsSubmittable(requiredValuesProvided);
+    }, [errors, inputValues])
+
+    function validateErrors() {
+        const validationErrors = validate(inputValues);
+        setErrors(validationErrors);
+    }
 
     function handleChange(event) {
-        if (event && event.target) {
-            const {name, value} = event.target;
-            setInputValues({
-                ...inputValues,
-                [name]: value
-            });
-        } else {
-            setInputValues({
-                ...inputValues,
-                birthDate: event
-            });
-        }
-        setIsSubmittable(!Object.values(inputValues).every(value => value !== ""));
+        const {name, value} = event.target;
+        inputValues[name].inputValue = value
+        setInputValues({
+            ...inputValues,
+        });
+        validateErrors();
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        const validationErrors = validate(inputValues);
-        setErrors(validationErrors);
+        setFormIsSubmitting(true);
         if (isSubmittable) {
             alert('Form has been submitted')
+            setFormIsSubmitting(false);
+        } else {
+            console.log('not submitted')
+            setFormIsSubmitting(false);
         }
     }
 
-    return {inputValues, handleChange, errors, handleSubmit}
+    return {handleChange, errors, handleSubmit, formIsSubmitting, isSubmittable}
 }
 
 export default useFormValidation;

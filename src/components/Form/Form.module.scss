@@ -2,7 +2,6 @@ form {
   .formInputs {
     display: flex;
     flex-direction: column;
-    //background-color: #dedede;
     padding: 10px 5px;
 
     .inputWrapper {
@@ -26,21 +25,15 @@ form {
         margin-bottom: 5px;
       }
 
-      input[name="date"] {
-        width: 210%;
-        margin-left: -60%;
-        margin-top: -40px;
-      }
-
       span {
         margin-top: 20px;
       }
     }
 
-
     .error {
       p {
         color: red;
+        font-size: 14px;
       }
 
       input {
@@ -60,13 +53,11 @@ form {
   }
 
   .comments {
-    //background-color: #dedede;
     display: flex;
     flex-direction: column;
   }
 
   .submit {
-    //background-color: #dedede;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -75,5 +66,4 @@ form {
       margin: 10px auto;
     }
   }
-
 }

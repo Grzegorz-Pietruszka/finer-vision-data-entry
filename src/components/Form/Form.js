@@ -2,26 +2,29 @@ import React, {useState} from 'react';
 import Accordion from "../Accordion/Accordion";
 import useFormValidation from "../helpers/useFormValidation";
 import validateInput from "../helpers/validateInput";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import style from "./Form.module.scss"
+// import "react-datepicker/dist/react-datepicker.css";
+import style from "./Form.module.scss";
+
+
 
 const INITIAL_STATE = {
-    firstName: "",
-    surname: "",
-    emailAddress: "",
-    mobileNumber: "",
-    gender: "",
-    birthDate: "",
+    firstName: {inputValue: "", required: true},
+    surname: {inputValue: "", required: true},
+    emailAddress: {inputValue: "", required: true},
+    mobileNumber: {inputValue: "", required: true},
+    gender: {inputValue: "", required: true},
+    birthDate: {inputValue: "", required: true},
+    comments: {inputValue: "", required: false},
 };
 
 const Form = () => {
     const [activeAccordion, setActiveAccordion] = useState("Step 1: Your details");
     const {
-        inputValues,
         handleChange,
         errors,
         handleSubmit,
+        formIsSubmitting,
+        isSubmittable
     } = useFormValidation(INITIAL_STATE, validateInput);
 
     return (
@@ -36,7 +39,7 @@ const Form = () => {
                             type="text"
                             onChange={handleChange}
                             name="firstName"
-                            value={inputValues.firstName}/>
+                            />
                         {errors.firstName && <p>{errors.firstName}</p>}
                     </div>
 
@@ -45,7 +48,7 @@ const Form = () => {
                         <input type="text"
                                onChange={handleChange}
                                name="surname"
-                               value={inputValues.surname}/>
+                               />
                         {errors.surname && <p>{errors.surname}</p>}
                     </div>
 
@@ -54,7 +57,7 @@ const Form = () => {
                         <input type="text"
                                onChange={handleChange}
                                name="emailAddress"
-                               value={inputValues.emailAddress}/>
+                               />
                         {errors.email && <p>{errors.email}</p>}
                     </div>
 
@@ -63,17 +66,19 @@ const Form = () => {
                         <input type="text"
                                onChange={handleChange}
                                name='mobileNumber'
-                               value={inputValues.mobileNumber}/>
+                               />
                         {errors.mobileNumber && <p>{errors.mobileNumber}</p>}
                     </div>
 
                     <div
                         className={(errors.birthDate && style.error) + " " + style.inputWrapper}>
-                        <label>Date of birth </label> <br/>
-                        <DatePicker selected={inputValues.birthDate}
-                                    name="date"
-                                    onChange={handleChange}
-                                    dateFormat="dd/MM/yyyy"/>
+                        <label>Date of birth </label>
+                        <input
+                               placeholder="dd/mm/yyyy"
+                               type="text"
+                               onChange={handleChange}
+                               name="birthDate"
+                        />
                         {errors.birthDate && <p>{errors.birthDate}</p>}
                     </div>
 
@@ -91,14 +96,12 @@ const Form = () => {
                                name="gender"
                                onChange={handleChange}/>
 
-
                         <label>Other</label>
                         <input type="radio"
                                value="other"
                                name="gender"
                                onChange={handleChange}/>
                         {errors.gender && <p>{errors.gender}</p>}
-
                     </div>
 
 
@@ -112,7 +115,7 @@ const Form = () => {
                        setActive={setActiveAccordion}>
 
                 <div className={style.comments}>
-                <textarea name="comments" maxLength="500" cols="20" rows="10" defaultValue="Your comments"
+                <textarea name="comments" maxLength="500" cols="20" rows="10" placeholder="Your comments"
                           onChange={handleChange}/>
                     <button type={"button"} onClick={() => setActiveAccordion("Step 3: Submit")}>
                         Next &#62;
@@ -124,11 +127,11 @@ const Form = () => {
                        active={activeAccordion}
                        setActive={setActiveAccordion}>
                 <div className={style.submit}>
-                   <p>Submit this form</p>
-                    <button type="submit">
+                    <p>Submit this form</p>
+                    <button type="submit" disabled={formIsSubmitting}>
                         Submit
                     </button>
-                    {Object.keys(errors).length !== 0 && <p>Provide your correct details</p>}
+                    {!isSubmittable && <p>Provide your correct details</p> }
                 </div>
             </Accordion>
         </form>
